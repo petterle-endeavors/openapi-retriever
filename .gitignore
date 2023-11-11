@@ -5,9 +5,8 @@ node_modules/
 !/.projen/deps.json
 !/.projen/files.json
 !/.github/workflows/pull-request-lint.yml
-/.env
-!/requirements.txt
-!/requirements-dev.txt
+!/pyproject.toml
+/poetry.toml
 __pycache__/
 *.py[cod]
 *$py.class
