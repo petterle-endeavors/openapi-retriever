@@ -2,21 +2,32 @@
   "dependencies": [
     {
       "name": "projen",
-      "version": "<=0.72.20",
+      "version": "<=0.72.0",
       "type": "devenv"
     },
     {
       "name": "aws-cdk-lib",
-      "version": "~2.106",
       "type": "runtime"
     },
     {
-      "name": "aws-cdk.aws-lambda-python",
+      "name": "aws-cdk.aws-lambda-python-alpha",
+      "type": "runtime"
+    },
+    {
+      "name": "fastapi",
+      "type": "runtime"
+    },
+    {
+      "name": "mangum",
+      "type": "runtime"
+    },
+    {
+      "name": "tai-aws-account-bootstrap",
       "type": "runtime"
     },
     {
       "name": "pytest",
-      "version": "6.2.1",
+      "version": "7.4.3",
       "type": "test"
     }
   ],

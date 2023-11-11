@@ -3,7 +3,9 @@
 {
 	"name": "Python 3",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/python:1-3.9-bullseye",
+	"image": "mcr.microsoft.com/devcontainers/python:1-3.10-bullseye",
+	"runArgs": ["--init"],
+	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
 	"features": {
 		"ghcr.io/devcontainers/features/aws-cli:1": {
 			"version": "latest"
@@ -37,7 +39,8 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "npm install -g projen && curl -sSL https://install.python-poetry.org | python3 - && export PATH='/home/vscode/.local/bin:$PATH' && poetry shell",
+	// "postCreateCommand": "npm install -g projen aws-cdk && curl -sSL https://install.python-poetry.org | python3 - && export PATH='/home/vscode/.local/bin:$PATH' && poetry shell",
+	"postCreateCommand": "npm install -g projen aws-cdk && make install && projen && sudo sh get-docker.sh",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
