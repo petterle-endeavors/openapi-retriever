@@ -55,6 +55,28 @@ MAKEFILE = TextFile(
     committed=True,
     readonly=True,
 )
+CONFIGURE_GITHUB_CREDS_CONTENTS = """\
+#!/bin/bash
+
+# Check if the correct number of parameters are passed
+if [ "$#" -ne 2 ]; then
+    echo "Usage: ./setupGitCLI.sh [email] [name]"
+    exit 1
+fi
+
+# Setup git cli with provided email and name
+git config --global user.email "$1"
+git config --global user.name "$2"
+
+echo "Git has been configured with Email: $1 and Name: $2"
+"""
+CONFIGURE_GITHUB_CREDS = TextFile(
+    project,
+    "GithubCreds",
+    lines=CONFIGURE_GITHUB_CREDS_CONTENTS.splitlines(),
+    committed=True,
+    readOnly=True,
+)
 
 
 project.synth()
