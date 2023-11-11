@@ -15,6 +15,7 @@ project = PythonProject(
     poetry=True,
     deps=[
         "aws-cdk-lib@~2.106",
+        "aws-cdk.aws-lambda-python",
     ],
     dev_deps=["projen@<=0.72.20"],
 )
