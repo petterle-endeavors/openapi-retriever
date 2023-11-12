@@ -16,11 +16,6 @@
       "type": "devenv"
     },
     {
-      "name": "tai-aws-account-bootstrap",
-      "version": ">=0.0.1",
-      "type": "devenv"
-    },
-    {
       "name": "aws-lambda-powertools",
       "version": "^2.26",
       "type": "runtime"
@@ -36,8 +31,18 @@
       "type": "runtime"
     },
     {
+      "name": "pydantic-settings",
+      "version": "^2.0",
+      "type": "runtime"
+    },
+    {
+      "name": "pydantic",
+      "version": "^2.4",
+      "type": "runtime"
+    },
+    {
       "name": "python",
-      "version": "^3.10",
+      "version": "^3.9",
       "type": "runtime"
     },
     {

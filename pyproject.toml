@@ -11,21 +11,15 @@ description = "A tool to retrieve OpenAPI specifications."
 authors = [ "Jacob Petterle <jacobpetterle@tai-tutor.team>" ]
 readme = "README.md"
 
-  [tool.poetry.extras]
-  deploy = [
-  "aws-cdk-lib",
-  "aws-cdk.aws-lambda-python-alpha",
-  "tai-aws-account-bootstrap"
-]
-
   [tool.poetry.dependencies]
   aws-lambda-powertools = "^2.26"
   fastapi = "^0.104"
   mangum = "^0.17"
-  python = "^3.10"
+  pydantic-settings = "^2.0"
+  pydantic = "^2.4"
+  python = "^3.9"
 
   [tool.poetry.dev-dependencies]
   aws-cdk-lib = "^2.106"
   "aws-cdk.aws-lambda-python-alpha" = "^2.106.1a0"
   projen = "<=0.72.0"
-  tai-aws-account-bootstrap = ">=0.0.1"

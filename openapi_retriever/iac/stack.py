@@ -1,13 +1,13 @@
 """Define the stack for the API."""
 from pathlib import Path
-from tai_aws_account_bootstrap.base_stack import BaseStack
-from tai_aws_account_bootstrap.stack_config_models import StackConfigBaseModel
-
 from aws_cdk import (
     App,
+    Stack,
     aws_lambda as _lambda,
     aws_lambda_python_alpha as _lambda_python,
 )
+from .base_stack import BaseStack
+from .base_stack_config import StackConfigBaseModel
 
 
 
@@ -25,10 +25,7 @@ class APIStack(BaseStack):
         config: StackConfigBaseModel,
     ) -> None:
         """Initialize the stack."""
-        super().__init__(
-            scope=app,
-            config=config,
-        )
+        super().__init__(scope=app, config=config)
 
         self._api = _lambda_python.PythonFunction(
             self,

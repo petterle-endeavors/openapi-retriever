@@ -16,8 +16,10 @@ PROJECT = PythonProject(
     deps=[
         "mangum@^0.17",
         "fastapi@^0.104",
-        "python@^3.10",
+        "python@^3.9",
         "aws-lambda-powertools@^2.26",
+        "pydantic@^2.4",
+        "pydantic-settings@^2.0",
     ],
     # deps=[
     #     "aws-cdk-lib",
@@ -30,17 +32,7 @@ PROJECT = PythonProject(
         "projen@<=0.72.0",
         "aws-cdk-lib@^2.106",
         "aws-cdk.aws-lambda-python-alpha@^2.106.1a0",
-        "tai-aws-account-bootstrap@>=0.0.1",
     ],
-    poetry_options=PoetryPyprojectOptionsWithoutDeps(
-        extras={
-            "deploy": [        
-                "aws-cdk-lib",
-                "aws-cdk.aws-lambda-python-alpha",
-                "tai-aws-account-bootstrap",
-            ]
-        }
-    )
 )
 PROJECT.add_git_ignore("**/cdk.out")
 PROJECT.add_git_ignore("**/.venv*")
@@ -60,6 +52,7 @@ docker-start:
 
 cdk-deploy-all:
 \tcdk deploy --all --require-approval never --app "python app.py" --profile dev
+
 """
 MAKEFILE = TextFile(
     PROJECT,
