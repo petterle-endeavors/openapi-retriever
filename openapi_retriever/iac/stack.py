@@ -60,3 +60,13 @@ class APIStack(BaseStack):
                 )
             ]
         )
+
+        self._api.add_function_url(
+            auth_type=_lambda.FunctionUrlAuthType.NONE,
+            cors=_lambda.FunctionUrlCorsOptions(
+                allow_credentials=True,
+                allowed_headers=["*"],
+                allowed_origins=["*"],
+            ),
+            invoke_mode=_lambda.InvokeMode.BUFFERED,
+        )

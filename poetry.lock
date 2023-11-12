@@ -126,6 +126,29 @@ publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
+name = "aws-lambda-powertools"
+version = "2.26.1"
+description = "Powertools for AWS Lambda (Python) is a developer toolkit to implement Serverless best practices and increase developer velocity."
+optional = false
+python-versions = ">=3.7.4,<4.0.0"
+files = [
+    {file = "aws_lambda_powertools-2.26.1-py3-none-any.whl", hash = "sha256:d22287a6666e3dee8a1b218dcdd80d40ac8da6501a8666de67b20134829085d7"},
+    {file = "aws_lambda_powertools-2.26.1.tar.gz", hash = "sha256:371c7541b770b35d70fbf512223329fa368a627fa02a45ada05b6669f19df1da"},
+]
+
+[package.dependencies]
+typing-extensions = ">=4.6.2,<5.0.0"
+
+[package.extras]
+all = ["aws-xray-sdk (>=2.8.0,<3.0.0)", "fastjsonschema (>=2.14.5,<3.0.0)", "pydantic (>=1.8.2,<2.0.0)"]
+aws-sdk = ["boto3 (>=1.20.32,<2.0.0)"]
+datadog = ["datadog-lambda (>=4.77.0,<5.0.0)"]
+datamasking-aws-sdk = ["aws-encryption-sdk (>=3.1.1,<4.0.0)"]
+parser = ["pydantic (>=1.8.2,<2.0.0)"]
+tracer = ["aws-xray-sdk (>=2.8.0,<3.0.0)"]
+validation = ["fastjsonschema (>=2.14.5,<3.0.0)"]
+
+[[package]]
 name = "boto3"
 version = "1.28.84"
 description = "The AWS SDK for Python"
@@ -1649,4 +1672,4 @@ deploy = []
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "d4b6a8bfa7ad3a2c71c033fe20049fa663b11ff650a071acdc8e5a219d8d30e7"
+content-hash = "3eee77e516919a83ac2a45b3fb387321a8500787d8be907a0011212c6d24490c"

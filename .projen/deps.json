@@ -21,6 +21,11 @@
       "type": "devenv"
     },
     {
+      "name": "aws-lambda-powertools",
+      "version": "^2.26",
+      "type": "runtime"
+    },
+    {
       "name": "fastapi",
       "version": "^0.104",
       "type": "runtime"

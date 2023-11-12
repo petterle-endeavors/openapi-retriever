@@ -19,6 +19,7 @@ readme = "README.md"
 ]
 
   [tool.poetry.dependencies]
+  aws-lambda-powertools = "^2.26"
   fastapi = "^0.104"
   mangum = "^0.17"
   python = "^3.10"

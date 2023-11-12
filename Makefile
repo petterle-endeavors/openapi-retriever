@@ -1,5 +1,5 @@
 install:
-	pip install projen
+	pip install "projen<=0.72.0"
 
 synth:
 	projen --post false

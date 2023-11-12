@@ -17,6 +17,7 @@ PROJECT = PythonProject(
         "mangum@^0.17",
         "fastapi@^0.104",
         "python@^3.10",
+        "aws-lambda-powertools@^2.26",
     ],
     # deps=[
     #     "aws-cdk-lib",
@@ -46,7 +47,7 @@ PROJECT.add_git_ignore("**/.venv*")
 
 MAKEFILE_CONTENTS = """\
 install:
-	pip install projen
+	pip install "projen<=0.72.0"
 
 synth:
 	projen --post false
