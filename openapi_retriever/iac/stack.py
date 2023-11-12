@@ -33,10 +33,7 @@ class APIStack(BaseStack):
             scope=app,
             config=config,
         )
-        print(str(_API_ENTRY_POINT.resolve()))
-        # list the contents of the directory
-        print("Contents of api directory:")
-        print([x for x in _API_ENTRY_POINT.iterdir()])
+
         self._api = _lambda_python.PythonFunction(
             self,
             "api",
@@ -44,7 +41,10 @@ class APIStack(BaseStack):
             runtime=_lambda.Runtime.PYTHON_3_10,
             index="index.py",
             handler="handler",
-            architecture=_lambda.Architecture.ARM_64,
+            # architecture=_lambda.Architecture.ARM_64,
+            # bundling=_lambda_python.BundlingOptions(
+            #     user="root"
+            # )
             # layers=[
             #     _lambda_python.PythonLayerVersion(
             #         self,

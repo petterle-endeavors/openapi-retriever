@@ -4,6 +4,9 @@
 	"name": "Python 3",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/python:1-3.10-bullseye",
+	"mounts": [
+		"source=${localWorkspaceFolder}/cdk.out,target=/home/ec2-user/cdk.out,type=bind,consistency=cached"
+	],
 	"features": {
 		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
 			"version": "latest",
