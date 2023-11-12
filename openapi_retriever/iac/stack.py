@@ -1,14 +1,10 @@
 """Define the stack for the API."""
 from pathlib import Path
-import shutil
-import tempfile
-from os import chmod
 from tai_aws_account_bootstrap.base_stack import BaseStack
 from tai_aws_account_bootstrap.stack_config_models import StackConfigBaseModel
 
 from aws_cdk import (
     App,
-    DockerImage,
     aws_lambda as _lambda,
     aws_lambda_python_alpha as _lambda_python,
 )
@@ -38,25 +34,29 @@ class APIStack(BaseStack):
             self,
             "api",
             entry=str(_API_ENTRY_POINT.resolve()),
-            runtime=_lambda.Runtime.PYTHON_3_10,
+            runtime=_lambda.Runtime(
+                "python3.10",
+                _lambda.RuntimeFamily.PYTHON,
+                bundling_docker_image="public.ecr.aws/sam/build-python3.10:latest-arm64",
+            ),
             index="index.py",
             handler="handler",
-            # architecture=_lambda.Architecture.ARM_64,
-            # bundling=_lambda_python.BundlingOptions(
-            #     user="root"
-            # )
-            # layers=[
-            #     _lambda_python.PythonLayerVersion(
-            #         self,
-            #         "api-dependencies",
-            #         entry=_TOP_LEVEL_DIR.as_posix(),
-            #         compatible_runtimes=[
-            #             _lambda.Runtime(
-            #                 'python3.10:latest-arm64',
-            #                 _lambda.RuntimeFamily.PYTHON,
-            #                 bundling_docker_image="public.ecr.aws/sam/build-python3.10:latest-arm64"
-            #             ),
-            #         ],
-            #     )
-            # ]
+            architecture=_lambda.Architecture.ARM_64,
+            layers=[
+                _lambda_python.PythonLayerVersion(
+                    self,
+                    "api-dependencies",
+                    entry=_TOP_LEVEL_DIR.as_posix(),
+                    compatible_runtimes=[
+                        _lambda.Runtime(
+                            'python3.10',
+                            _lambda.RuntimeFamily.PYTHON,
+                            bundling_docker_image="public.ecr.aws/sam/build-python3.10:latest-arm64"
+                        ),
+                    ],
+                    bundling=_lambda_python.BundlingOptions(
+                        asset_excludes=[".venv", "cdk.out", ".venv-deploy"]
+                    )     
+                )
+            ]
         )

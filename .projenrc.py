@@ -1,4 +1,4 @@
-from projen.python import PythonProject, VenvOptions
+from projen.python import PythonProject, PoetryPyprojectOptionsWithoutDeps, VenvOptions
 from projen import TextFile
 
 
@@ -12,28 +12,37 @@ PROJECT = PythonProject(
     name="openapi-retriever",
     version="0.0.0",
     description="A tool to retrieve OpenAPI specifications.",
-    poetry=False,
-    # deps=[
-    #     "aws-cdk-lib@2.106",
-    #     "aws-cdk.aws-lambda-python-alpha@^2.101.0a0",
-    #     "mangum@^0.17",
-    #     "fastapi@^0.104",
-    #     "python@^3.10",
-    #     "tai-aws-account-bootstrap@>=0.0.1",
-    # ],
-    venv=True,
-    venv_options=VenvOptions(envdir=".venv"),
+    poetry=True,
     deps=[
-        "aws-cdk-lib",
-        "aws-cdk.aws-lambda-python-alpha",
-        "mangum",
-        "fastapi",
-        "tai-aws-account-bootstrap",
-        "cowsay"
+        "mangum@^0.17",
+        "fastapi@^0.104",
+        "python@^3.10",
     ],
-    dev_deps=["projen@<=0.72.0"],
+    # deps=[
+    #     "aws-cdk-lib",
+    #     "aws-cdk.aws-lambda-python-alpha",
+    #     "mangum",
+    #     "fastapi",
+    #     "tai-aws-account-bootstrap",
+    # ],
+    dev_deps=[
+        "projen@<=0.72.0",
+        "aws-cdk-lib@^2.106",
+        "aws-cdk.aws-lambda-python-alpha@^2.106.1a0",
+        "tai-aws-account-bootstrap@>=0.0.1",
+    ],
+    poetry_options=PoetryPyprojectOptionsWithoutDeps(
+        extras={
+            "deploy": [        
+                "aws-cdk-lib",
+                "aws-cdk.aws-lambda-python-alpha",
+                "tai-aws-account-bootstrap",
+            ]
+        }
+    )
 )
 PROJECT.add_git_ignore("**/cdk.out")
+PROJECT.add_git_ignore("**/.venv*")
 
 MAKEFILE_CONTENTS = """\
 install:

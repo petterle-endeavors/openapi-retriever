@@ -9,5 +9,4 @@
 /.projen/tasks.json linguist-generated
 /configureGitCLI.sh linguist-generated
 /Makefile linguist-generated
-/requirements-dev.txt linguist-generated
-/requirements.txt linguist-generated
+/pyproject.toml linguist-generated
