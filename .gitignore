@@ -5,7 +5,7 @@ node_modules/
 !/.projen/deps.json
 !/.projen/files.json
 !/.github/workflows/pull-request-lint.yml
-/.env
+/.venv
 !/requirements.txt
 !/requirements-dev.txt
 __pycache__/
@@ -83,4 +83,6 @@ dmypy.json
 .pyre/
 .pytype/
 cython_debug/
+**/cdk.out
 !/Makefile
+!/configureGitCLI.sh

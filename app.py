@@ -11,7 +11,7 @@ APP = App()
 
 
 API_STACK = APIStack(
-    scope=APP,
+    app=APP,
     config=StackConfigBaseModel(
         stack_name="openapi-retriever",
         stack_id="openapi-retriever",
