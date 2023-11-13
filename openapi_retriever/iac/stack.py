@@ -52,7 +52,8 @@ class APIStack(BaseStack):
                         ),
                     ],
                     bundling=_lambda_python.BundlingOptions(
-                        asset_excludes=[".venv", "cdk.out", ".venv-deploy"]
+                        user="root",
+                        asset_excludes=[".venv", "cdk.out"]
                     )     
                 )
             ]

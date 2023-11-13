@@ -22,4 +22,9 @@ readme = "README.md"
   [tool.poetry.dev-dependencies]
   aws-cdk-lib = "^2.106"
   "aws-cdk.aws-lambda-python-alpha" = "^2.106.1a0"
+  boto3 = "^1.28"
   projen = "<=0.72.0"
+
+    [tool.poetry.dev-dependencies.boto3-stubs]
+    version = "^1.28"
+    extras = [ "sts" ]

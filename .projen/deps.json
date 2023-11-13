@@ -11,6 +11,16 @@
       "type": "devenv"
     },
     {
+      "name": "boto3-stubs",
+      "version": "{version = '^1.28', extras = ['sts']}",
+      "type": "devenv"
+    },
+    {
+      "name": "boto3",
+      "version": "^1.28",
+      "type": "devenv"
+    },
+    {
       "name": "projen",
       "version": "<=0.72.0",
       "type": "devenv"

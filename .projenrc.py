@@ -32,6 +32,9 @@ PROJECT = PythonProject(
         "projen@<=0.72.0",
         "aws-cdk-lib@^2.106",
         "aws-cdk.aws-lambda-python-alpha@^2.106.1a0",
+        "boto3@^1.28",
+        "boto3-stubs@{version = '^1.28', extras = ['essential']}",
+        "boto3-stubs@{version = '^1.28', extras = ['sts']}",
     ],
 )
 PROJECT.add_git_ignore("**/cdk.out")
@@ -51,7 +54,7 @@ docker-start:
 \tsudo systemctl start docker
 
 cdk-deploy-all:
-\tcdk deploy --all --require-approval never --app "python app.py" --profile dev
+\tcdk deploy --all --require-approval never --app "python app.py" --profile default --output ../cdk.out
 
 """
 MAKEFILE = TextFile(
