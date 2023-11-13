@@ -1,13 +1,15 @@
 """Define the stack for the API."""
+from typing import Optional
 from pathlib import Path
 from aws_cdk import (
     App,
-    Stack,
     aws_lambda as _lambda,
     aws_lambda_python_alpha as _lambda_python,
+    aws_iam as iam,
 )
 from .base_stack import BaseStack
 from .base_stack_config import StackConfigBaseModel
+from ..api.settings import Settings
 
 
 
@@ -23,9 +25,11 @@ class APIStack(BaseStack):
         self,
         app: App,
         config: StackConfigBaseModel,
+        runtime_settings: Optional[Settings] = None,
     ) -> None:
         """Initialize the stack."""
         super().__init__(scope=app, config=config)
+        runtime_settings = runtime_settings or Settings()
 
         self._api = _lambda_python.PythonFunction(
             self,
@@ -54,9 +58,10 @@ class APIStack(BaseStack):
                     bundling=_lambda_python.BundlingOptions(
                         user="root",
                         asset_excludes=[".venv", "cdk.out"]
-                    )     
+                    )
                 )
-            ]
+            ],
+            environment=runtime_settings.model_dump(mode="json")
         )
 
         self._api.add_function_url(
@@ -67,4 +72,11 @@ class APIStack(BaseStack):
                 allowed_origins=["*"],
             ),
             invoke_mode=_lambda.InvokeMode.BUFFERED,
+        )
+
+        self._api.add_to_role_policy(
+            iam.PolicyStatement(
+                actions=["secretsmanager:GetSecretValue"],
+                resources=["*"],
+            )
         )

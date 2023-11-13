@@ -21,6 +21,7 @@ PROJECT = PythonProject(
         "pydantic@^2.4",
         "pydantic-settings@^2.0",
         "requests@^2.31",
+        "urllib3@<2",  # this is required to work on lambda
     ],
     # deps=[
     #     "aws-cdk-lib",
@@ -56,7 +57,8 @@ docker-start:
 \tsudo systemctl start docker
 
 cdk-deploy-all:
-\tcdk deploy --all --require-approval never --app "python app.py" --profile default
+
+\tcdk deploy --all --require-approval never --app "python app.py"
 
 """
 MAKEFILE = TextFile(

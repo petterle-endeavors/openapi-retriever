@@ -66,6 +66,11 @@
       "type": "runtime"
     },
     {
+      "name": "urllib3",
+      "version": "<2",
+      "type": "runtime"
+    },
+    {
       "name": "pytest",
       "version": "6.2.1",
       "type": "test"

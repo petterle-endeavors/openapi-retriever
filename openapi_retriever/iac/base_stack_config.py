@@ -32,7 +32,7 @@ class AWSDeploymentSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file="../../.env")
 
     aws_region: AWSRegion = Field(
-        default=AWSRegion.US_WEST_2,
+        default=AWSRegion.US_EAST_1,
         description="The AWS region to deploy to.",
     )
     deployment_environment: DeploymentEnvironment = Field(

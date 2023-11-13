@@ -19,6 +19,7 @@ readme = "README.md"
   pydantic = "^2.4"
   python = "^3.9"
   requests = "^2.31"
+  urllib3 = "<2"
 
   [tool.poetry.dev-dependencies]
   aws-cdk-lib = "^2.106"
