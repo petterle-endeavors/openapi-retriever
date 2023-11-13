@@ -7,22 +7,7 @@ from typing import Optional
 class Cache:
 
     @staticmethod
-    def hash(value: str) -> str:
-        """
-        Generate an MD5 hash of a string.
-        
-        Args:
-            value: The string to hash.
-            
-        Returns:
-            The MD5 hash of the string.
-        """
-        hash_obj = hashlib.md5()
-        hash_obj.update(value.encode('utf-8'))
-        return hash_obj.hexdigest()
-
-    @staticmethod
-    def get(value: str) -> Optional[str]:
+    def get(key: str) -> Optional[str]:
         """
         Retrieve a cached string from a local file cache.
         
@@ -32,9 +17,7 @@ class Cache:
         Returns:
             The cached string if it exists, or an empty string if it does not.
         """
-        hash_hex = Cache.hash(value)
-        filename = os.path.join('/tmp', hash_hex)
-        
+        filename = os.path.join('/tmp', key)
         try:
             with open(filename, 'r', encoding='utf-8') as f:
                 return f.read()
@@ -42,7 +25,7 @@ class Cache:
             return None
 
     @staticmethod
-    def set(value: str) -> str:
+    def set(key: str, value: str) -> None:
         """
         Cache a string in a local file cache.
         
@@ -52,9 +35,7 @@ class Cache:
         Returns:
             The MD5 hash of the cached string.
         """
-        hash_hex = Cache.hash(value)
-        filename = os.path.join('/tmp', hash_hex)
-        
-        with open(filename, 'w') as f:
+        filename = os.path.join('/tmp', key)
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        with open(filename, 'w', encoding='utf-8') as f:
             f.write(value)
-        return hash_hex

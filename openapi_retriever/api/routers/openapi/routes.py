@@ -3,7 +3,7 @@ from fastapi import Request
 from fastapi import APIRouter
 from openapi_retriever.api.routers.openapi.models import (
     OpenAPISchemaSearchRequest,
-    OpenAPISchemaSearchResponse,
+    OpenAPIMetadataSearchResponse,
 )
 from openapi_retriever.api.services.postman import Postman
 from openapi_retriever.api.settings import (
@@ -15,12 +15,16 @@ from openapi_retriever.api.settings import (
 ROUTER = APIRouter()
 
 
-ROUTER.post("/search", response_model=OpenAPISchemaSearchResponse)
+@ROUTER.post("/search", response_model=OpenAPIMetadataSearchResponse)
 def search_openapi_schemas(
     search_request: OpenAPISchemaSearchRequest,
     request: Request,
-) -> OpenAPISchemaSearchResponse:
+) -> OpenAPIMetadataSearchResponse:
     """Search for OpenAPI schemas."""
     settings: Settings = getattr(request.app.state, RUNTIME_SETTINGS_ATTRIBUTE_NAME)
-    postman_client = Postman(secret_name=settings.postman_api_key_secret_name)
-    
+    postman_client = Postman(settings=settings)
+    response = postman_client.search_openapi_schemas(search_request)
+    return OpenAPIMetadataSearchResponse(
+        search_term=search_request.search_term,
+        ranked_schema_metadata=response,
+    )

@@ -18,6 +18,7 @@ readme = "README.md"
   pydantic-settings = "^2.0"
   pydantic = "^2.4"
   python = "^3.9"
+  requests = "^2.31"
 
   [tool.poetry.dev-dependencies]
   aws-cdk-lib = "^2.106"
@@ -28,3 +29,7 @@ readme = "README.md"
     [tool.poetry.dev-dependencies.boto3-stubs]
     version = "^1.28"
     extras = [ "sts" ]
+
+    [tool.poetry.dev-dependencies.uvicorn]
+    version = "^0.24.0"
+    extras = [ "standard" ]

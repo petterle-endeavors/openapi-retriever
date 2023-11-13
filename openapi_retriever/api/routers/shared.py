@@ -12,4 +12,7 @@ def to_camel_case(text: str) -> str:
 class BaseAPIModel(BaseModel):
     """Define the base model for all API models."""
 
-    model_config = ConfigDict(alias_generator=to_camel_case)
+    model_config = ConfigDict(
+        alias_generator=to_camel_case,
+        populate_by_name=True,
+    )
