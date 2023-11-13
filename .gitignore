@@ -82,3 +82,7 @@ dmypy.json
 .pyre/
 .pytype/
 cython_debug/
+**/cdk.out
+**/.venv*
+!/Makefile
+!/configureGitCLI.sh

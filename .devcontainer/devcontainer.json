@@ -3,8 +3,16 @@
 {
 	"name": "Python 3",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/python:1-3.9-bullseye",
+	"image": "mcr.microsoft.com/devcontainers/python:1-3.10-bullseye",
+	"containerEnv": {
+		"AWS_DEFAULT_REGION": "us-east-1"
+	},
 	"features": {
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"version": "latest",
+			"enableNonRootDocker": "true",
+			"moby": "true"
+		},
 		"ghcr.io/devcontainers/features/aws-cli:1": {
 			"version": "latest"
 		},
@@ -37,7 +45,8 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "npm install -g projen && curl -sSL https://install.python-poetry.org | python3 - && export PATH='/home/vscode/.local/bin:$PATH' && poetry shell",
+	"postCreateCommand": "npm install -g projen aws-cdk && curl -sSL https://install.python-poetry.org | python3 - && poetry shell",
+	// "postCreateCommand": "npm install -g projen aws-cdk && make install && projen && sudo sh get-docker.sh",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
@@ -57,7 +66,8 @@
 				"esbenp.prettier-vscode",
 				"GitHub.vscode-pull-request-github",
 				"ms-python.isort",
-				"searKing.preview-vscode"
+				"searKing.preview-vscode",
+				"MatthewNespor.vscode-color-identifiers-mode"
 			],
 			"settings": {
 				"highlight.regexes": {

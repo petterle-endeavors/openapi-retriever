@@ -1,18 +1,78 @@
 {
   "dependencies": [
     {
-      "name": "projen",
-      "version": "<=0.72.20",
+      "name": "aws-cdk-lib",
+      "version": "^2.106",
       "type": "devenv"
     },
     {
-      "name": "aws-cdk-lib",
-      "version": "~2.106",
+      "name": "aws-cdk.aws-lambda-python-alpha",
+      "version": "^2.106.1a0",
+      "type": "devenv"
+    },
+    {
+      "name": "boto3-stubs",
+      "version": "{version = '^1.28', extras = ['sts']}",
+      "type": "devenv"
+    },
+    {
+      "name": "boto3",
+      "version": "^1.28",
+      "type": "devenv"
+    },
+    {
+      "name": "projen",
+      "version": "<=0.72.0",
+      "type": "devenv"
+    },
+    {
+      "name": "uvicorn",
+      "version": "{version = '^0.24.0', extras = ['standard']}",
+      "type": "devenv"
+    },
+    {
+      "name": "aws-lambda-powertools",
+      "version": "^2.26",
+      "type": "runtime"
+    },
+    {
+      "name": "fastapi",
+      "version": "^0.104",
+      "type": "runtime"
+    },
+    {
+      "name": "mangum",
+      "version": "^0.17",
+      "type": "runtime"
+    },
+    {
+      "name": "pydantic-settings",
+      "version": "^2.0",
+      "type": "runtime"
+    },
+    {
+      "name": "pydantic",
+      "version": "^2.4",
+      "type": "runtime"
+    },
+    {
+      "name": "python",
+      "version": "^3.9",
+      "type": "runtime"
+    },
+    {
+      "name": "requests",
+      "version": "^2.31",
+      "type": "runtime"
+    },
+    {
+      "name": "urllib3",
+      "version": "<2",
       "type": "runtime"
     },
     {
       "name": "pytest",
-      "version": "7.4.3",
+      "version": "6.2.1",
       "type": "test"
     }
   ],

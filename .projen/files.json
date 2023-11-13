@@ -6,6 +6,8 @@
     ".projen/deps.json",
     ".projen/files.json",
     ".projen/tasks.json",
+    "configureGitCLI.sh",
+    "Makefile",
     "poetry.toml",
     "pyproject.toml"
   ],
