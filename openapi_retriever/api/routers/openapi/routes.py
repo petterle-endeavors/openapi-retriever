@@ -37,15 +37,15 @@ def search_openapi_schemas(
 
 
 @ROUTER.get(
-    "/",
+    "/{schema_id}",
     name="Get OpenAPI Schema",
     operation_id="get_openapi_schema",
     description="Retrieve an OpenAPI schema from an id returned from the search endpoint.",
-    response_model=OpenAPISchemaResponse,
+    response_model=OpenAPISchemaResponse
 )
 def get_openapi_schema(
     request: Request,
-    schema_id: str = Query(..., title="The ID of the schema to retrieve."),
+    schema_id: str = Path(..., title="The ID of the schema to retrieve."),
 ) -> OpenAPISchemaResponse:
     """Retrieve an OpenAPI schema."""
     settings: Settings = getattr(request.app.state, RUNTIME_SETTINGS_ATTRIBUTE_NAME)
