@@ -1,9 +1,12 @@
 """Define service wrapper."""
+import json
 import requests
+
 from openapi_retriever.api.services.base_service import IService
 from openapi_retriever.api.routers.openapi.models import (
     RankedOpenAPIMetadata,
     OpenAPISchemaSearchRequest,
+    OpenAPISchemaResponse,
 )
 from openapi_retriever.api.services.external_service_models import (
     PostmanSearchRequest,
@@ -60,3 +63,20 @@ class Postman(IService):
             except ValueError:  # pylint: disable=broad-except
                 pass
         return [self._ranked_postman_document_to_openapi_metadata(doc) for doc in validated_collections]
+
+    def get_openapi_schema(self, schema_id: str) -> OpenAPISchemaResponse:
+        """Get an OpenAPI schema."""
+        response = requests.get(
+            f"https://api.getpostman.com/collections/{schema_id}/transformations",
+            headers={
+                "Content-Type": "application/json",
+                "x-api-key": self.api_key,
+            },
+            timeout=5,
+        )
+        raw_schema = response.json()["output"]
+        schema = OpenAPISchemaResponse(
+            id=schema_id,
+            schema=json.loads(raw_schema),
+        )
+        return schema
