@@ -3,6 +3,8 @@ from typing import Optional
 from pathlib import Path
 from aws_cdk import (
     App,
+    Duration,
+    Size,
     aws_lambda as _lambda,
     aws_lambda_python_alpha as _lambda_python,
     aws_iam as iam,
@@ -43,6 +45,9 @@ class APIStack(BaseStack):
             index="index.py",
             handler="handler",
             architecture=_lambda.Architecture.ARM_64,
+            timeout=Duration.seconds(20),
+            memory_size=512,
+            ephemeral_storage_size=Size.gibibytes(1),
             layers=[
                 _lambda_python.PythonLayerVersion(
                     self,

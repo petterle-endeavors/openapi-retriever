@@ -53,7 +53,7 @@ class Postman(IService):
                 "Host": "www.postman.com",
             },
             data=request_body_model.model_dump_json(by_alias=True),
-            timeout=10,
+            timeout=20,
         )
         raw_colletions = response.json()["data"]["collection"]
         validated_collections: list[RankedPostmanAPIResult] = []
@@ -72,11 +72,11 @@ class Postman(IService):
                 "Content-Type": "application/json",
                 "x-api-key": self.api_key,
             },
-            timeout=5,
+            timeout=20,
         )
         raw_schema = response.json()["output"]
         schema = OpenAPISchemaResponse(
-            id=schema_id,
-            schema=json.loads(raw_schema),
+            schema_id=schema_id,
+            openapi_schema=json.loads(raw_schema),
         )
         return schema

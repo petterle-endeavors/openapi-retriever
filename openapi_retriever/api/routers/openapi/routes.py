@@ -15,7 +15,13 @@ from openapi_retriever.api.settings import (
 ROUTER = APIRouter()
 
 
-@ROUTER.post("/search", response_model=OpenAPIMetadataSearchResponse)
+@ROUTER.post(
+    "/search",
+    name="Search for OpenAPI Schemas",
+    operation_id="search_openapi_schemas",
+    description="Search for OpenAPI schemas in the public Postman Collections repositories.",
+    response_model=OpenAPIMetadataSearchResponse,
+)
 def search_openapi_schemas(
     search_request: OpenAPISchemaSearchRequest,
     request: Request,
@@ -30,10 +36,16 @@ def search_openapi_schemas(
     )
 
 
-@ROUTER.get("/schema/{schema_id}", response_model=OpenAPISchemaResponse)
-def read_item(
+@ROUTER.get(
+    "/",
+    name="Get OpenAPI Schema",
+    operation_id="get_openapi_schema",
+    description="Retrieve an OpenAPI schema from an id returned from the search endpoint.",
+    response_model=OpenAPISchemaResponse,
+)
+def get_openapi_schema(
     request: Request,
-    schema_id: str = Path(..., title="The ID of the schema to retrieve."),
+    schema_id: str = Query(..., title="The ID of the schema to retrieve."),
 ) -> OpenAPISchemaResponse:
     """Retrieve an OpenAPI schema."""
     settings: Settings = getattr(request.app.state, RUNTIME_SETTINGS_ATTRIBUTE_NAME)

@@ -66,11 +66,11 @@ class OpenAPIMetadataSearchResponse(OpenAPISchemaSearchRequest):
 class OpenAPISchemaResponse(BaseAPIModel):
     """Define the model for the OpenAPI Schema Response."""
 
-    id: str = Field(
+    schema_id: str = Field(
         ...,
         description="The ID of the schema.",
     )
-    schema: dict = Field(
+    openapi_schema: dict = Field(
         ...,
         description="The OpenAPI schema.",
     )
