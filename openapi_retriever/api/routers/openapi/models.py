@@ -61,3 +61,16 @@ class OpenAPIMetadataSearchResponse(OpenAPISchemaSearchRequest):
         ...,
         description="The list of ranked OpenAPI schemas.",
     )
+
+
+class OpenAPISchemaResponse(BaseAPIModel):
+    """Define the model for the OpenAPI Schema Response."""
+
+    schema_id: str = Field(
+        ...,
+        description="The ID of the schema.",
+    )
+    openapi_schema: dict = Field(
+        ...,
+        description="The OpenAPI schema.",
+    )
