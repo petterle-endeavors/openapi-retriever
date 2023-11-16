@@ -6,6 +6,7 @@ from openapi_retriever.api.routers.openapi.models import (
     OpenAPISchemaResponse,
 )
 from openapi_retriever.api.services.postman import Postman
+from openapi_retriever.api.services.schema_bucket import SchemaBucket
 from openapi_retriever.api.settings import (
     RUNTIME_SETTINGS_ATTRIBUTE_NAME,
     Settings,
@@ -31,7 +32,7 @@ def search_openapi_schemas(
     postman_client = Postman(settings=settings)
     response = postman_client.search_openapi_schemas(search_request)
     return OpenAPIMetadataSearchResponse(
-        search_term=search_request.search_term,
+        search_query=search_request.search_query,
         ranked_schema_metadata=response,
     )
 
@@ -51,4 +52,8 @@ def get_openapi_schema(
     settings: Settings = getattr(request.app.state, RUNTIME_SETTINGS_ATTRIBUTE_NAME)
     postman_client = Postman(settings=settings)
     schema = postman_client.get_openapi_schema(schema_id)
-    return schema
+    schema = postman_client.remove_responses_from_openapi(schema)
+    return OpenAPISchemaResponse(
+        schema_id=schema_id,
+        openapi_schema=schema,
+    )

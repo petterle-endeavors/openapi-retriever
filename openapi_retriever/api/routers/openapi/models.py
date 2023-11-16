@@ -7,9 +7,9 @@ from openapi_retriever.api.routers.shared import BaseAPIModel
 class OpenAPISchemaSearchRequest(BaseAPIModel):
     """Define the model for the OpenAPI Schema Search Request."""
 
-    search_term: str = Field(
+    search_query: str = Field(
         ...,
-        description="The search term to use to search for OpenAPI schemas.",
+        description="The search query to use to search for OpenAPI schemas.",
     )
 
 
@@ -64,7 +64,7 @@ class OpenAPIMetadataSearchResponse(OpenAPISchemaSearchRequest):
 
 
 class OpenAPISchemaResponse(BaseAPIModel):
-    """Define the model for the OpenAPI Schema Response."""
+    """The model for the OpenAPI Schema Response."""
 
     schema_id: str = Field(
         ...,

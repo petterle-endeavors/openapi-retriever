@@ -11,7 +11,9 @@
             "module": "uvicorn",
             "args": [
                 "openapi_retriever.api.index:APP",
-                "--reload"
+                "--reload",
+                "--reload-dir",
+                "openapi_retriever",
             ],
             "jinja": true,
             "justMyCode": true,

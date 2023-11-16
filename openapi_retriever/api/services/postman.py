@@ -1,5 +1,6 @@
 """Define service wrapper."""
 import json
+from typing import Any, Dict
 import requests
 
 from openapi_retriever.api.services.base_service import IService
@@ -44,7 +45,7 @@ class Postman(IService):
     ) -> list[RankedOpenAPIMetadata]:
         """Search for OpenAPI schemas."""
         request_body_model = PostmanSearchRequest(
-            body=PostmanSearchBody(query_text=request.search_term)
+            body=PostmanSearchBody(query_text=request.search_query)
         )
         response = requests.post(
             "https://www.postman.com/_api/ws/proxy",
@@ -64,7 +65,7 @@ class Postman(IService):
                 pass
         return [self._ranked_postman_document_to_openapi_metadata(doc) for doc in validated_collections]
 
-    def get_openapi_schema(self, schema_id: str) -> OpenAPISchemaResponse:
+    def get_openapi_schema(self, schema_id: str) -> dict:
         """Get an OpenAPI schema."""
         response = requests.get(
             f"https://api.getpostman.com/collections/{schema_id}/transformations",
@@ -75,8 +76,61 @@ class Postman(IService):
             timeout=20,
         )
         raw_schema = response.json()["output"]
-        schema = OpenAPISchemaResponse(
-            schema_id=schema_id,
-            openapi_schema=json.loads(raw_schema),
-        )
-        return schema
+        return json.loads(raw_schema)
+
+    @staticmethod
+    def remove_responses_from_openapi(openapi_schema: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Remove 'responses' keys from all methods within the 'paths' of an OpenAPI schema.
+
+        Parameters
+        ----------
+        openapi_schema : Dict[str, Any]
+            The OpenAPI schema to be modified.
+
+        Returns
+        -------
+        Dict[str, Any]
+            The OpenAPI schema with 'responses' removed from each path's methods.
+
+        Examples
+        --------
+        >>> dummy_openapi_schema = {
+            "openapi": "3.0.0",
+            "info": {
+                "title": "Sample API",
+                "version": "0.1.9"
+            },
+            "paths": {
+                "/pets": {
+                    "get": {
+                        "summary": "List all pets",
+                        "responses": {
+                            "200": {
+                                "description": "A paged array of pets"
+                            }
+                        }
+                    },
+                    "post": {
+                        "summary": "Create a pet",
+                        "responses": {
+                            "201": {
+                                "description": "Null response"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        >>> remove_responses_from_openapi(dummy_openapi_schema)
+        The returned schema will have the 'responses' keys removed.
+        """
+        # Check if the 'paths' field exists in the OpenAPI schema to avoid KeyError
+        if 'paths' in openapi_schema:
+            # Iterate through all paths and methods
+            for methods in openapi_schema['paths'].values():
+                for method in methods:
+                    # Remove 'responses' key if it exists in the method
+                    methods[method].pop('responses', None)
+
+        return openapi_schema
