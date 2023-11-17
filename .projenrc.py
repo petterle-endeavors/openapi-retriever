@@ -22,6 +22,7 @@ PROJECT = PythonProject(
         "pydantic-settings@^2.0",
         "requests@^2.31",
         "urllib3@<2",  # this is required to work on lambda
+        "python-multipart@^0.0"
     ],
     # deps=[
     #     "aws-cdk-lib",

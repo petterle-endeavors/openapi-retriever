@@ -17,6 +17,7 @@ readme = "README.md"
   mangum = "^0.17"
   pydantic-settings = "^2.0"
   pydantic = "^2.4"
+  python-multipart = "^0.0"
   python = "^3.9"
   requests = "^2.31"
   urllib3 = "<2"
@@ -34,7 +35,3 @@ readme = "README.md"
     [tool.poetry.dev-dependencies.uvicorn]
     version = "^0.24.0"
     extras = [ "standard" ]
-
-[tool.poetry.group.dev.dependencies]
-boto3-stubs = {version = "1.28.85", extras = ["s3", "sts"]}
-

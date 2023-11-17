@@ -2,6 +2,7 @@
 from uuid import uuid4
 import json
 import boto3
+from fastapi import UploadFile
 from openapi_retriever.api.services.base_service import IService
 from openapi_retriever.api.settings import Settings
 
@@ -26,3 +27,30 @@ class SchemaBucket(IService):
     def put(self, schema: dict) -> str:
         """Put the schema in the bucket."""
         return self._put(schema=schema)
+
+    def upload_file(self, file: UploadFile) -> str:
+        """
+        Upload a file to the bucket and return the URL to the file.
+        
+        :param file: UploadFile object received from a client.
+        :return: The URL of the uploaded file.
+        """
+        s3_client = boto3.client("s3")
+
+        file_extension = file.filename.split(".")[-1]
+        key = f"{uuid4().hex}.{file_extension}"
+        
+        try:
+            s3_client.upload_fileobj(
+                file.file,
+                self.bucket_name,
+                key,
+                ExtraArgs={
+                    "ContentType": file.content_type,
+                    "ContentDisposition": f"attachment; filename={file.filename}"
+                }
+            )
+        except Exception as e:
+            raise Exception(f"Failed to upload file to S3: {str(e)}")  # pylint: disable=raise-missing-from, broad-exception-raised
+        
+        return f"https://{self.bucket_name}.s3.amazonaws.com/{key}"

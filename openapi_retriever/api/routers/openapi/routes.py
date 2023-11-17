@@ -1,5 +1,5 @@
 """Define the routes for the OpenAPI router."""
-from fastapi import APIRouter, Path, Request
+from fastapi import APIRouter, File, Path, Request, UploadFile
 from openapi_retriever.api.routers.openapi.models import (
     OpenAPISchemaSearchRequest,
     OpenAPIMetadataSearchResponse,
@@ -57,3 +57,24 @@ def get_openapi_schema(
         schema_id=schema_id,
         openapi_schema=schema,
     )
+
+
+@ROUTER.post(
+    "/upload-file",
+    name="Upload file to S3 and get URL",
+    operation_id="upload_file_to_s3_and_get_url",
+    description="Uploads a file to an S3 bucket and returns the URL to the file."
+)
+async def upload_file_to_s3_and_get_url(
+    request: Request,
+    file: UploadFile = File(..., description="The file to upload.")
+) -> dict:
+    """Upload file to S3 bucket and return the URL of the file."""
+    settings: Settings = getattr(request.app.state, RUNTIME_SETTINGS_ATTRIBUTE_NAME)
+    schema_bucket_service = SchemaBucket(settings=settings)
+    
+    try:
+        file_url = schema_bucket_service.upload_file(file=file)
+        return {"file_url": file_url}
+    except Exception as error:  # pylint: disable=broad-except
+        return {"error": str(error)}
