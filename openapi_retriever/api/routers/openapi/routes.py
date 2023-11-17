@@ -63,7 +63,8 @@ def get_openapi_schema(
     "/upload-file",
     name="Upload file to S3 and get URL",
     operation_id="upload_file_to_s3_and_get_url",
-    description="Uploads a file to an S3 bucket and returns the URL to the file."
+    description="Uploads a file to an S3 bucket and returns the URL to the file.",
+    include_in_schema=False,
 )
 async def upload_file_to_s3_and_get_url(
     request: Request,
