@@ -100,17 +100,17 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-aws-lambda-python-alpha"
-version = "2.109.0a0"
+version = "2.110.0a0"
 description = "The CDK Construct Library for AWS Lambda in Python"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "aws-cdk.aws-lambda-python-alpha-2.109.0a0.tar.gz", hash = "sha256:52d15448674215277c34f26c25f422530ad7daf4af5bc395099543332762096f"},
-    {file = "aws_cdk.aws_lambda_python_alpha-2.109.0a0-py3-none-any.whl", hash = "sha256:5de28fd74070e0aa43dd31448691501d9c902d22ba02104bc1bc56c6257d1617"},
+    {file = "aws-cdk.aws-lambda-python-alpha-2.110.0a0.tar.gz", hash = "sha256:5224d96d42e43069593194d907cb91e794cd1fd34fae7b33a6bc3ad5a876900b"},
+    {file = "aws_cdk.aws_lambda_python_alpha-2.110.0a0-py3-none-any.whl", hash = "sha256:e67f89e6e95cd745fa499e7702c3b4c239e14ff4f93195579bef891df38c6810"},
 ]
 
 [package.dependencies]
-aws-cdk-lib = ">=2.109.0,<3.0.0"
+aws-cdk-lib = ">=2.110.0,<3.0.0"
 constructs = ">=10.0.0,<11.0.0"
 jsii = ">=1.91.0,<2.0.0"
 publication = ">=0.0.3"
@@ -118,13 +118,13 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.109.0"
+version = "2.110.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "aws-cdk-lib-2.109.0.tar.gz", hash = "sha256:dd07a7fdea47b6004020513027d1ab6c50c4b4f21c1bb8640a973e83e3c5effd"},
-    {file = "aws_cdk_lib-2.109.0-py3-none-any.whl", hash = "sha256:14bde55e9c658b2b6385246e94bf0bdd155ad821ebcf6e5a7e179bf5d44c08e8"},
+    {file = "aws-cdk-lib-2.110.0.tar.gz", hash = "sha256:2f6650e8d365fb2b143e65cf22d91de45c090636d8a2f1ac68efc302187780f7"},
+    {file = "aws_cdk_lib-2.110.0-py3-none-any.whl", hash = "sha256:80a8eac6dcc2dd38496d9296efb1d90b45051dd1748743555bf69cfe83b1aa0a"},
 ]
 
 [package.dependencies]
@@ -138,13 +138,13 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-lambda-powertools"
-version = "2.26.1"
+version = "2.27.0"
 description = "Powertools for AWS Lambda (Python) is a developer toolkit to implement Serverless best practices and increase developer velocity."
 optional = false
 python-versions = ">=3.7.4,<4.0.0"
 files = [
-    {file = "aws_lambda_powertools-2.26.1-py3-none-any.whl", hash = "sha256:d22287a6666e3dee8a1b218dcdd80d40ac8da6501a8666de67b20134829085d7"},
-    {file = "aws_lambda_powertools-2.26.1.tar.gz", hash = "sha256:371c7541b770b35d70fbf512223329fa368a627fa02a45ada05b6669f19df1da"},
+    {file = "aws_lambda_powertools-2.27.0-py3-none-any.whl", hash = "sha256:f53a88558ebd6a08c1de16d84172258698e2acb5219b57390c0a2e49f6b4998e"},
+    {file = "aws_lambda_powertools-2.27.0.tar.gz", hash = "sha256:6bd138028b11281c917e8ac176e8c19197a89fa6b0a980dfbcee510b169ffcc7"},
 ]
 
 [package.dependencies]
@@ -161,17 +161,17 @@ validation = ["fastjsonschema (>=2.14.5,<3.0.0)"]
 
 [[package]]
 name = "boto3"
-version = "1.29.1"
+version = "1.29.2"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">= 3.7"
 files = [
-    {file = "boto3-1.29.1-py3-none-any.whl", hash = "sha256:192695305fa65012d21f78ee852b91cb56dd571e84d51fb71f756302bf19d23f"},
-    {file = "boto3-1.29.1.tar.gz", hash = "sha256:20285ebf4e98b2905a88aeb162b4f77ff908b2e3e31038b3223e593789290aa3"},
+    {file = "boto3-1.29.2-py3-none-any.whl", hash = "sha256:6617ac176efb21485ebc3a058a3a97feb1300141421ae3d1809562c4cac1d5f9"},
+    {file = "boto3-1.29.2.tar.gz", hash = "sha256:f3024bba9ac980007ba7b5f28a9734d111fb5466e2426ac76c5edbd6dedd8db2"},
 ]
 
 [package.dependencies]
-botocore = ">=1.32.1,<1.33.0"
+botocore = ">=1.32.2,<1.33.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.7.0,<0.8.0"
 
@@ -180,13 +180,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "boto3-stubs"
-version = "1.29.1"
-description = "Type annotations for boto3 1.29.1 generated with mypy-boto3-builder 7.20.3"
+version = "1.29.2"
+description = "Type annotations for boto3 1.29.2 generated with mypy-boto3-builder 7.20.3"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "boto3-stubs-1.29.1.tar.gz", hash = "sha256:6dfe6af913b1a4a43bc8d62c98bf98ec2f1ad3474fabeacc7d9a521c5bd689da"},
-    {file = "boto3_stubs-1.29.1-py3-none-any.whl", hash = "sha256:3a923b7895f06b079f48cf316d69c3b61e02ca67fdc73c07f864ab09c448723d"},
+    {file = "boto3-stubs-1.29.2.tar.gz", hash = "sha256:b2382f633bbd31bdbfaa4ae80fc5e49042d7012a8529cc9edef12fda2c0b1bbe"},
+    {file = "boto3_stubs-1.29.2-py3-none-any.whl", hash = "sha256:e3899f6fb2fb7ec35e1c3703e46bed2be726498ff03477ad0049dd702c39bf26"},
 ]
 
 [package.dependencies]
@@ -233,7 +233,7 @@ batch = ["mypy-boto3-batch (>=1.29.0,<1.30.0)"]
 bedrock = ["mypy-boto3-bedrock (>=1.29.0,<1.30.0)"]
 bedrock-runtime = ["mypy-boto3-bedrock-runtime (>=1.29.0,<1.30.0)"]
 billingconductor = ["mypy-boto3-billingconductor (>=1.29.0,<1.30.0)"]
-boto3 = ["boto3 (==1.29.1)", "botocore (==1.32.1)"]
+boto3 = ["boto3 (==1.29.2)", "botocore (==1.32.2)"]
 braket = ["mypy-boto3-braket (>=1.29.0,<1.30.0)"]
 budgets = ["mypy-boto3-budgets (>=1.29.0,<1.30.0)"]
 ce = ["mypy-boto3-ce (>=1.29.0,<1.30.0)"]
@@ -560,13 +560,13 @@ xray = ["mypy-boto3-xray (>=1.29.0,<1.30.0)"]
 
 [[package]]
 name = "botocore"
-version = "1.32.1"
+version = "1.32.2"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">= 3.7"
 files = [
-    {file = "botocore-1.32.1-py3-none-any.whl", hash = "sha256:1d9c0ff3eb7828a8bd8c5c7f12cd9d8c05c6fe4c616ef963fdaab538a0da3809"},
-    {file = "botocore-1.32.1.tar.gz", hash = "sha256:fcf3cc2913afba8e5f7ebcc15e8f6bfae844ab64bf983bf5a6fe3bb54cce239d"},
+    {file = "botocore-1.32.2-py3-none-any.whl", hash = "sha256:a68a33193d8cd59e3b2142bff632e562afc02f9c4417e3dcc81a6e1b1f47148e"},
+    {file = "botocore-1.32.2.tar.gz", hash = "sha256:0e231524e9b72169fe0b8d9310f47072c245fb712778e0669f53f264f0e49536"},
 ]
 
 [package.dependencies]
@@ -582,13 +582,13 @@ crt = ["awscrt (==0.19.12)"]
 
 [[package]]
 name = "botocore-stubs"
-version = "1.32.1"
+version = "1.32.2"
 description = "Type annotations and code completion for botocore"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
-    {file = "botocore_stubs-1.32.1-py3-none-any.whl", hash = "sha256:da440c4527d01a9ca04ec76f04f8edad5ff8ef8c5bfaec1038e48b7dc232e6a0"},
-    {file = "botocore_stubs-1.32.1.tar.gz", hash = "sha256:f88c7ff2339d497819042274688a993f94ae069b47c87aff76e99d005f2f0b35"},
+    {file = "botocore_stubs-1.32.2-py3-none-any.whl", hash = "sha256:004c8a7de4733eb02393dc1460aad24b0b4b084dca9e6f9c3831b4dc5fd77068"},
+    {file = "botocore_stubs-1.32.2.tar.gz", hash = "sha256:58ef8f2b013f84ed59cd7ef00ae09951a355c749cc90a1ae809b3e03c9aa2b34"},
 ]
 
 [package.dependencies]
@@ -908,13 +908,13 @@ files = [
 
 [[package]]
 name = "jsii"
-version = "1.91.0"
+version = "1.92.0"
 description = "Python client for jsii runtime"
 optional = false
-python-versions = "~=3.7"
+python-versions = "~=3.8"
 files = [
-    {file = "jsii-1.91.0-py3-none-any.whl", hash = "sha256:2905a4ea030ae7289b859e97003c01f4569650b4865c51e7f83d975b95c5b20a"},
-    {file = "jsii-1.91.0.tar.gz", hash = "sha256:9600ac7d04b237ee229c74ffde65ece27202ceec5df5e7eebd88a532d2cb28d6"},
+    {file = "jsii-1.92.0-py3-none-any.whl", hash = "sha256:30deaea011e146e1d4c0dbb35bd7effd4d292cef676052e5672a825fc1aaaebf"},
+    {file = "jsii-1.92.0.tar.gz", hash = "sha256:2b5205c0fec87e1a9a9f283f60577ad172d7124bb614b8cdadc963306e1ac75f"},
 ]
 
 [package.dependencies]
@@ -924,7 +924,7 @@ importlib-resources = ">=5.2.0"
 publication = ">=0.0.3"
 python-dateutil = "*"
 typeguard = ">=2.13.3,<2.14.0"
-typing-extensions = ">=3.7,<5.0"
+typing-extensions = ">=3.8,<5.0"
 
 [[package]]
 name = "mangum"
