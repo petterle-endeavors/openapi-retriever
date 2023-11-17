@@ -1,6 +1,6 @@
 # GPT Action Builder
 
-Welcome! You've stumbled upon the GPT Action Builder. It started as a proof of concept, with the grand idea of making it easy for anyone to **craft their custom GPT Agents that make function calls**. Unfortunately, this turned out to be a bit tougher than I hoped due to technological hurdles. This project is currently more of a "sketch" than a "masterpiece."
+Welcome! You've stumbled upon the GPT Action Builder. It started as a proof of concept, with the grand idea of making it easy for anyone to **craft their custom GPT Agents that make function calls with NO CODE**. Unfortunately, this turned out to be a bit tougher than I hoped due to technological hurdles. This project is currently more of a "sketch" than a "masterpiece."
 
 But the upside is that I've laid out some foundational bricks on the path and now I'm turning to you, the community, for a helping hand. This project is an open invite to fellow tinkerers to experiment, tweak, and hopefully push through the hurdles where the original run came up short.
 
@@ -12,6 +12,8 @@ I truly believe systems that empower agents to build other agents is the future.
 * The GPT would thne fetch the `openapi.json` from a Postman collection `id` using your Postman API key
 * The GPT would then remove uneccesary info, validate minimum requirements, find authentication information, and getting started guides.
 * Finally, it would return the schema to the user where they could use it for a brand new GPT that they built.
+
+*[Here's the GPT that is currently deployed](https://chat.openai.com/g/g-fttFaS2lR-gpts-action-builder)*
 
 ## Getting Started
 
