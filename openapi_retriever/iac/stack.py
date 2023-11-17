@@ -8,6 +8,7 @@ from aws_cdk import (
     aws_lambda as _lambda,
     aws_lambda_python_alpha as _lambda_python,
     aws_iam as iam,
+    aws_s3 as s3,
 )
 from .base_stack import BaseStack
 from .base_stack_config import StackConfigBaseModel
@@ -31,7 +32,11 @@ class APIStack(BaseStack):
     ) -> None:
         """Initialize the stack."""
         super().__init__(scope=app, config=config)
-        runtime_settings = runtime_settings or Settings()
+        bucket_name = "openapi-retriever-schema"
+        runtime_settings = runtime_settings or Settings(
+            schema_bucket_name=bucket_name
+        )
+
 
         self._api = _lambda_python.PythonFunction(
             self,
@@ -85,3 +90,32 @@ class APIStack(BaseStack):
                 resources=["*"],
             )
         )
+        
+        schema_bucket = s3.Bucket(
+            self,
+            "schema-bucket",
+            bucket_name=bucket_name,
+            # Updated block public access to only block ACLs that grant public write access
+            block_public_access=s3.BlockPublicAccess(
+                block_public_acls=True,  # Block new public ACLs and updating existing public ACLs
+                ignore_public_acls=True,  # Ignore public ACLs (existing ones do not grant access)
+                block_public_policy=False,  # Do NOT block bucket policies that grant public read access
+                restrict_public_buckets=False  # Do NOT restrict access to only authorized users
+            ),
+            removal_policy=self._config.removal_policy,
+            auto_delete_objects=True,
+            encryption=s3.BucketEncryption.UNENCRYPTED,
+            versioned=False,
+        )
+
+        # Attaching the bucket policy
+        schema_bucket.add_to_resource_policy(
+            iam.PolicyStatement(
+                actions=["s3:GetObject"],
+                resources=[schema_bucket.arn_for_objects("*")],  # granting permission for all objects in the bucket
+                principals=[iam.AnyPrincipal()]  # allows all users to read the objects
+            )
+        )
+
+        # allow the lambda to put objects in the bucket
+        schema_bucket.grant_put(self._api)

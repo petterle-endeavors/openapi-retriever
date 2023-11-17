@@ -9,3 +9,4 @@ class Settings(BaseSettings):
     """Define the settings for the API."""
 
     postman_api_key_secret_name: str = "postman_api_key"
+    schema_bucket_name: str
